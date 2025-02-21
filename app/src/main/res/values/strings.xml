@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">RememberMed</string>
+    <string name="forward"><![CDATA[->]]></string>
+    <string name="backward"><![CDATA[<-]]></string>
 </resources>
