@@ -6,18 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".WeeklyViewActivity">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Weekly"
-        android:layout_gravity="center"
-        android:background="@color/white"
-        android:textColor="@color/blue"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:onClick="weeklyAction" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,7 +26,7 @@
             android:textColor="@color/blue"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:onClick="prevMonthAction" />
+            android:onClick="prevWeekAction" />
 
         <TextView
             android:id="@+id/txtMonthDay"
@@ -57,7 +47,7 @@
             android:textColor="@color/blue"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:onClick="nextMonthAction" />
+            android:onClick="nextWeekAction" />
     </LinearLayout>
 
     <LinearLayout
@@ -67,7 +57,6 @@
         >
 
         <TextView
-            android:id="@+id/txtSunday"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -131,11 +120,28 @@
             android:textSize="16sp"
             />
     </LinearLayout>
-    
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/calendarRecView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Event"
+        android:background="@color/white"
+        android:textColor="@color/blue"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:onClick="newEventAction" />
+    
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"/>
 
 
 </LinearLayout>

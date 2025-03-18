@@ -13,6 +13,14 @@
         android:theme="@style/Theme.RememberMed"
         tools:targetApi="31">
         <activity
+            android:name=".EventEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WeeklyViewActivity"
+            android:exported="false"
+            android:label="@string/title_activity_weekly_view"
+            android:theme="@style/Theme.RememberMed" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

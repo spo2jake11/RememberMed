@@ -2,4 +2,5 @@
     <string name="app_name">RememberMed</string>
     <string name="forward"><![CDATA[->]]></string>
     <string name="backward"><![CDATA[<-]]></string>
+    <string name="title_activity_weekly_view">WeeklyViewActivity</string>
 </resources>
