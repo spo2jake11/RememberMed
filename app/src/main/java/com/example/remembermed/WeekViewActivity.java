@@ -1,12 +1,13 @@
 package com.example.remembermed;
 
-import static com.example.remembermed.ui.theme.CalendarUtils.daysInMonthArray;
-import static com.example.remembermed.ui.theme.CalendarUtils.daysInWeekArray;
-import static com.example.remembermed.ui.theme.CalendarUtils.monthYearFromDate;
-import static com.example.remembermed.ui.theme.CalendarUtils.selectedDate;
+import static com.example.remembermed.CalendarUtils.daysInWeekArray;
+import static com.example.remembermed.CalendarUtils.monthYearFromDate;
+import static com.example.remembermed.CalendarUtils.selectedDate;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,11 +22,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class WeeklyViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener{
+public class WeekViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener{
 
     private TextView txtMonthYear;
     private RecyclerView calendarRecView;
 
+    private ListView eventListView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,7 @@ public class WeeklyViewActivity extends AppCompatActivity implements CalendarAda
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
         calendarRecView.setLayoutManager(layoutManager);
         calendarRecView.setAdapter(calendarAdapter);
+        setEventAdapter();
     }
 
 
@@ -56,6 +59,7 @@ public class WeeklyViewActivity extends AppCompatActivity implements CalendarAda
     private void initWidgets() {
         calendarRecView = findViewById(R.id.calendarRecView);
         txtMonthYear = findViewById(R.id.txtMonthDay);
+        eventListView = findViewById(R.id.eventListView);
     }
 
     public void prevWeekAction(View view) {
@@ -69,12 +73,29 @@ public class WeeklyViewActivity extends AppCompatActivity implements CalendarAda
     }
 
     public void newEventAction(View view) {
-
+        startActivity(new Intent(this, EventEditActivity.class));
     }
 
     @Override
-    public void onItemClick(int position, String dayText) {
-            String message = "Selected date " + dayText + " " + monthYearFromDate(selectedDate);
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    public void onItemClick(int position, LocalDate date) {
+        selectedDate = date;
+        setWeekView();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setEventAdapter();
+    }
+
+    private void setEventAdapter() {
+        ArrayList<Event> dailyEvents = Event.eventsForDate(selectedDate);
+
+        EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), dailyEvents);
+
+        eventListView.setAdapter(eventAdapter);
+    }
+
+    public void dailyAction(View view) {
     }
 }

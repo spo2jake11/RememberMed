@@ -1,8 +1,8 @@
 package com.example.remembermed;
 
-import static com.example.remembermed.ui.theme.CalendarUtils.daysInMonthArray;
-import static com.example.remembermed.ui.theme.CalendarUtils.monthYearFromDate;
-import static com.example.remembermed.ui.theme.CalendarUtils.selectedDate;
+import static com.example.remembermed.CalendarUtils.daysInMonthArray;
+import static com.example.remembermed.CalendarUtils.monthYearFromDate;
+import static com.example.remembermed.CalendarUtils.selectedDate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,22 +10,12 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.helper.widget.Grid;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.remembermed.ui.theme.CalendarUtils;
-
 import java.time.LocalDate;
-import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener{
 
@@ -70,14 +60,14 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     }
 
     @Override
-    public void onItemClick(int position, String dayText) {
-        if(dayText.equals("")){
-            String message = "Selected date " + dayText + " " + monthYearFromDate(selectedDate);
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    public void onItemClick(int position, LocalDate date) {
+        if (date != null) {
+            selectedDate = date;
+            setMonthView();
         }
     }
 
     public void weeklyAction(View view) {
-        startActivity(new Intent(this, WeeklyViewActivity.class));
+        startActivity(new Intent(this, WeekViewActivity.class));
     }
 }

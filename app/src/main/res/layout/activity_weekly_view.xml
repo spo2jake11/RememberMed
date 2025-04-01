@@ -6,8 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".WeeklyViewActivity">
+    tools:context=".WeekViewActivity">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Daily"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:textColor="@color/blue"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:onClick="dailyAction" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -139,6 +149,7 @@
         android:onClick="newEventAction" />
     
     <ListView
+        android:id="@+id/eventListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"/>

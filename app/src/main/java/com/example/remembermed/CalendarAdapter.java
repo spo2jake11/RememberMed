@@ -8,9 +8,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.remembermed.ui.theme.CalendarUtils;
-
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -36,7 +33,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
             layoutParams.height = (int) (parent.getHeight() * 0.1666666666);
         else
             layoutParams.height = (int) parent.getHeight();
-        return new CalendarViewHolder(view, onItemListener);
+        return new CalendarViewHolder(view, onItemListener, days);
     }
 
     @Override
@@ -47,7 +44,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
         else{
             holder.dayOfMonth.setText(String.valueOf(localDate.getDayOfMonth()));
             if(localDate.equals(CalendarUtils.selectedDate))
-                holder.parentView.setBackgroundColor(Color.CYAN);
+                holder.parentView.setBackgroundColor(Color.LTGRAY);
         }
     }
 
@@ -58,6 +55,6 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
 
     public interface  OnItemListener
     {
-        void onItemClick(int position, String dayText);
+        void onItemClick(int position, LocalDate date);
     }
 }
